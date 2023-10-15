@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="SDS2.HybridPlugins" Version="0.0.9-preview" />
+    <PackageReference Include="SDS2.NetAPI" Version="2023.5.0" />
+    <PackageReference Include="SDS2.Plugin.UI" Version="0.0.4-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\DemoAppSetUpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del &quot;$(TargetDir)\DesignData.SDS2.Database.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Detail.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Exceptions.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Model.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Primitives.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Python.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.Setup.dll&quot; /q&#xD;&#xA;del &quot;$(TargetDir)\DesignData.SDS2.WinForms.dll&quot; /q" />
+  </Target>
+
+</Project>

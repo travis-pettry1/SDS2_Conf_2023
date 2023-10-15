@@ -1,0 +1,55 @@
+﻿<Window x:Class="DemoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoApp"
+        xmlns:sds2="clr-namespace:SDS2.Plugin.UI.Controls;assembly=SDS2.Plugin.UI"
+        xmlns:sm="clr-namespace:SDS2.Plugin.UI.Models;assembly=SDS2.Plugin.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Style="{DynamicResource {x:Type Window}}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <sm:CommonDictionary Source="pack://application:,,,/SDS2.Plugin.UI;component/Resources/SDS2Icons.xaml"/>
+                <sm:CommonDictionary Source="pack://application:,,,/SDS2.Plugin.UI;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Member" />
+        <sds2:SDS2Button Command="{Binding PickMemberCmd}" Content="Select Member" Grid.Column="1" />
+        <Label Content="{Binding Member.Guid}" Grid.Column="2" />
+
+        <Label Content="Profile" Grid.Row="1" />
+        <sds2:SDS2Button Command="{Binding PickProfileCmd}" Content="Select Profile"
+                         Grid.Row="1" Grid.Column="1" />
+        <Label Content="{Binding Profile}" Grid.Row="1" Grid.Column="2" />
+
+        <Label Content="Left Connection" Grid.Row="2" />
+        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ConnectionTypes}"
+                  SelectedItem="{Binding LeftConnection}" />
+
+        <Label Content="Right Connection" Grid.Row="3" />
+        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding ConnectionTypes}"
+                  SelectedItem="{Binding RightConnection}" />
+
+
+        <sds2:ButtonBar Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" OkCommand="{Binding OkCommand}" />
+
+    </Grid>
+</Window>
